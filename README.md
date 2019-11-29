@@ -6,6 +6,9 @@ Appearently biber get's pretty slow fetching entries from large .bib-files,
 but keeping separate smaller bibliographies for each project is rather tedious.
 So this is a quick and dirty fix that will create a local bibliography by extracting only cited entries.
 
+## Dependencies
+sed
+
 ## Usage
 1. Change the variable `$bibres` to the path of your global bibliography,
 2. make script executable with `chmod +x xbib.sh`,
