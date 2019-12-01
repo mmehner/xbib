@@ -2,8 +2,7 @@
 a shell script that extracts cited Bib(La)TeX entries from a global .bib-file
 
 ## Ain't no biber running like sed
-Appearently biber get's pretty slow fetching entries from large .bib-files, 
-but keeping separate smaller bibliographies for each project is rather tedious.
+Apparently biber gets pretty slow fetching entries from large .bib-files,but keeping separate smaller bibliographies for each project is rather tedious.
 So this is a quick and dirty fix that will create a local bibliography by extracting only cited entries.
 
 ## Dependencies
@@ -11,9 +10,9 @@ sed
 
 ## Usage
 1. Change the variable `$bibres` to the path of your global bibliography,
-2. make script executable with `chmod +x xbib.sh`,
-3. cd into the directory of the master LaTeX-file you want to compile,
-4. make sure your .tex-file has exactly one local bibliography specified with `\addbibresource{…}` or `\bibliography{…}`
+2. make script executable with `chmod +x /PATH/TO/xbib.sh`,
+3. `cd` into the directory of the master LaTeX-file you want to compile,
+4. make sure your .tex-file has exactly one local bibliography specified with `\addbibresource{local.bib}` or `\bibliography{local.bib}`
 5. run `/PATH/TO/xbib.sh master.tex`with the master file as first argument, cited entries of master and input-files, 
 as well as crossreferences will be written in the file specified,
 6. (optional) integrate it into your compilation routine by creating a custom function like 
