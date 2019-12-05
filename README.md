@@ -2,7 +2,7 @@
 a shell script that extracts cited Bib(La)TeX entries from a global .bib-file
 
 ## Ain't no biber running like sed
-Apparently biber gets pretty slow fetching entries from large .bib-files,but keeping separate smaller bibliographies for each project is rather tedious.
+Apparently biber gets pretty slow fetching entries from large .bib-files, but keeping separate smaller bibliographies for each project is rather tedious.
 So this is a quick and dirty fix that will create a local bibliography by extracting only cited entries.
 
 ## Dependencies
