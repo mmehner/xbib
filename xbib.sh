@@ -39,7 +39,7 @@ for i in $(sed '/%.*/d'  "$1" | sed -n 's/^.*input{\([^}]\+\)}.*$/\1/p' | sort |
 do
     echo
     echo "Citation keys found in ""$i"":"
-    for e in $(sed '/%.*/d'  "$i" | sed -n 's/^.*\\\(cite\|footcite\|autocite\|nocite\|fullcite\)\(\[.*\]\)\?{\([^}]\+\)}.*$/\3/p' | sort | uniq)
+    for e in $(sed '/%.*/d'  "$i" | sed -n 's/^.*\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\)\(\[.*\]\)\?{\([^}]\+\)}.*$/\3/p' | sort | uniq)
     do
 	echo "$e"
 	echo "$e" >> xcitkeys.txt
