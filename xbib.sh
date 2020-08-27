@@ -28,18 +28,18 @@ echo -n "" > xcitkeys.txt
 # extract keys of specified file
 echo
 echo "Citation keys found in $1:"
-for e in $(sed '/%.*/d'  "$1" | grep -o "\\\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\){[^}]\+" | sort | uniq | sed "s/^.\+{//")
+for e in $(grep -o "\\\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\){[^}]\+" "$1" | sed "s/^.\+{//" | sort | uniq)
 do
     echo "$e"
     echo "$e" >> xcitkeys.txt
 done
 
 # extract keys of further input files
-for i in $(sed '/%.*/d'  "$1" | sed -n 's/^.*input{\([^}]\+\)}.*$/\1/p' | sort | uniq | sed -n 's/\(\(.\+\)\(\.tex\)\|\(.\+\)\)$/\2\4.tex/p')
+for i in $(sed "s/%.*//"  "$1" | grep -o "\\\\input{[^}]\+" | sed "s/^.\+{//" | sort | uniq | sed -n "s/\(\(.\+\)\(\.tex\)\|\(.\+\)\)$/\2\4.tex/p")
 do
     echo
     echo "Citation keys found in ""$i"":"
-    for e in $(sed '/%.*/d'  "$i" | grep -o "\\\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\){[^}]\+" | sort | uniq | sed "s/^.\+{//")
+    for e in $(grep -o "\\\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\){[^}]\+" "$i" | sed "s/^.\+{//" | sort | uniq)
     do
 	echo "$e"
 	echo "$e" >> xcitkeys.txt
