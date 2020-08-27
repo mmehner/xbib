@@ -3,7 +3,7 @@
 # Usage: modify variable "bibres", cd into working directory of master-tex-file and run script with master-tex-file as first argument.
 
 # modify this variable to set global .bib-file
-bibres="PATH/TO/.bib"
+bibres="$HOME/Basics/biblio.bib"
 
 # delete comments, in case a bibliography has been commented out and extract the filename of the local .bib-file
 xbibres=$(sed '/%.*/d' "$1" | sed -n 's/^.*\\\(addbibresource\|bibliography\){\(\([^}]\+\)\(\.bib\)\|\([^}]\+\)\)}.*/\3\5.bib/p')
@@ -28,7 +28,7 @@ echo -n "" > xcitkeys.txt
 # extract keys of specified file
 echo
 echo "Citation keys found in $1:"
-for e in $(sed '/%.*/d'  "$1" | sed -n 's/^.*\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\)\(\[.*\]\)\?{\([^}]\+\)}.*$/\3/p' | sort | uniq)
+for e in $(sed '/%.*/d'  "$1" | grep -o "\\\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\){[^}]\+" | sort | uniq | sed "s/^.\+{//")
 do
     echo "$e"
     echo "$e" >> xcitkeys.txt
@@ -39,7 +39,7 @@ for i in $(sed '/%.*/d'  "$1" | sed -n 's/^.*input{\([^}]\+\)}.*$/\1/p' | sort |
 do
     echo
     echo "Citation keys found in ""$i"":"
-    for e in $(sed '/%.*/d'  "$i" | sed -n 's/^.*\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\)\(\[.*\]\)\?{\([^}]\+\)}.*$/\3/p' | sort | uniq)
+    for e in $(sed '/%.*/d'  "$i" | grep -o "\\\\\(cite\|footcite\|autocite\|nocite\|fullcite\|citeauthor\){[^}]\+" | sort | uniq | sed "s/^.\+{//")
     do
 	echo "$e"
 	echo "$e" >> xcitkeys.txt
