@@ -3,7 +3,7 @@
 # Usage: modify variable "bibres", cd into working directory of master-tex-file and run script with master-tex-file as first argument.
 
 # modify this variable to set global .bib-file
-bibres="$HOME/Basics/biblio.bib"
+bibres="PATH/TO/BIBLIOGRAPHY.bib"
 
 # delete comments, in case a bibliography has been commented out and extract the filename of the local .bib-file
 xbibres=$(sed '/%.*/d' "$1" | sed -n 's/^.*\\\(addbibresource\|bibliography\){\(\([^}]\+\)\(\.bib\)\|\([^}]\+\)\)}.*/\3\5.bib/p')
